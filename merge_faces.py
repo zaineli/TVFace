@@ -8,7 +8,7 @@ def merge_face_images():
     Merge all face images from channel directories into a single 'faces' directory.
     """
     # Define paths
-    tvface_dir = os.path.abspath('tvface_dataset')
+    tvface_dir = os.path.abspath('TVFace')
     output_dir = os.path.join(tvface_dir, 'faces')
     
     # Create output directory if it doesn't exist
