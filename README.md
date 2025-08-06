@@ -11,7 +11,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.1007/s10044-025-01464-3.svg)](https://doi.org/10.1007/s10044-025-01464-3)
 
 <p align="center">
-  <img src="assets/diverse_collage.jpg" alt="Identity Collage" width="800">
+  <img src="statistics/collage/diverse_collage.jpg" alt="Identity Collage" width="800">
 </p>
 
 </div>
@@ -56,7 +56,7 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 
 </td>
 <td width="55%">
-<img src="statistics/graphs/gender_distribution_simple.png" alt="Gender Distribution" width="100%">
+<img src="statistics/graphs/gender_distribution.png" alt="Gender Distribution" width="100%">
 </td>
 </tr>
 </table>
@@ -73,7 +73,7 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | Latino Hispanic | 90,758 | 3.48% |
 | Southeast Asian | 37,277 | 1.43% |
 
-<img src="statistics/graphs/ethnicity_distribution_simple.png" alt="Ethnicity Distribution" width="100%">
+<img src="statistics/graphs/ethnicity_distribution.png" alt="Ethnicity Distribution" width="100%">
 
 ## Expression Distribution
 
@@ -89,7 +89,7 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | Disgust | 6,072 | 0.23% | 0.640 |
 
 
-<img src="statistics/graphs/expression_distribution_simple.png" alt="Expression Distribution" width="100%">
+<img src="statistics/graphs/expression_distribution.png" alt="Expression Distribution" width="100%">
 
 
 ## Head Pose Statistics
@@ -102,7 +102,7 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | Pitch (Up-Down) | -4.27 | 9.25 | Slight downward (camera angle) |
 | Roll (Tilt) | -0.997 | 7.98 | Nearly level, small variations |
 
-<img src="statistics/graphs/head_pose_distribution_simple.png" alt="Head Pose Distribution" width="100%">
+<img src="statistics/graphs/head_pose_distribution.png" alt="Head Pose Distribution" width="100%">
 
 
 ## Directory Structure
