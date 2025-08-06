@@ -35,9 +35,6 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | **Age Groups** | 8 (0-2 to 70+) |
 | **Expressions** | 7 categories with confidence scores |
 
-<div align="center">
-  <img src="assets/identity_distribution_simple.png" alt="Identity Distribution" width="700">
-</div>
 
 ## Demographic Distribution
 
@@ -57,9 +54,7 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 </tr>
 </table>
 
-<table>
-<tr>
-<td width="50%">
+## Demographic Distribution
 
 | **Ethnicity** | Count | Percentage |
 |---------------|-------|------------|
@@ -71,18 +66,10 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | Latino Hispanic | 90,758 | 3.48% |
 | Southeast Asian | 37,277 | 1.43% |
 
-</td>
-<td width="50%">
 <img src="assets/ethnicity_distribution_simple.png" alt="Ethnicity Distribution" width="100%">
-</td>
-</tr>
-</table>
 
 ## Expression Distribution
 
-<table>
-<tr>
-<td width="50%">
 
 | **Expression** | **Count** | **Percentage** | **Avg. Confidence** |
 |----------------|-----------|----------------|---------------------|
@@ -94,18 +81,13 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | Surprise | 47,920 | 1.8% | 0.716 |
 | Disgust | 6,072 | 0.23% | 0.640 |
 
-</td>
-<td width="50%">
+
 <img src="assets/expression_distribution_simple.png" alt="Expression Distribution" width="100%">
-</td>
-</tr>
-</table>
+
 
 ## Head Pose Statistics
 
-<table>
-<tr>
-<td width="50%">
+
 
 | **Pose Component** | **Mean (degrees)** | **Std Dev (degrees)** | **Characteristics** |
 |--------------------|--------------------|-----------------------|---------------------|
@@ -113,40 +95,36 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | Pitch (Up-Down) | -4.27 | 9.25 | Slight downward (camera angle) |
 | Roll (Tilt) | -0.997 | 7.98 | Nearly level, small variations |
 
-</td>
-<td width="50%">
 <img src="assets/head_pose_distribution_simple.png" alt="Head Pose Distribution" width="100%">
-</td>
-</tr>
-</table>
+
 
 ## Directory Structure
 
+### Google Drive Dataset Structure
+The TVFace dataset available for download is organized by TV channels:
+
 ```
 tvface_dataset/
-├── by_label/
-│   ├── 0/
-│   │   ├── abcnews_frame_20211215180237107908_face_0.jpg
-│   │   └── ...
-│   ├── 1/
-│   │   └── ...
-│   └── .../
-├── annotations/
-│   ├── annotations.json
-│   ├── demographic_summary.csv
-│   └── clustering_ground_truth.csv
-├── splits/
-│   ├── clustering_images.txt
-│   └── train_val_test_splits.txt
-└── evaluation_scripts/
-    ├── clustering_metrics.py
-    └── demographic_analysis.py
+├── abc_news/
+│   ├── abcnews_frame_20211215180237107908_face_0.jpg
+│   └── ...
+├── skynews/
+│   ├── skynews_frame_2021121518232343208_face_0.jpg
+│   └── ...
+├── aljazeera/
+│   └── ...
+├── [20 other channels]/
+│   └── ...
+annotations.json  # Contains annotations for all 2.6M images across all channels
 ```
+
+- **22 Television Channels**: The dataset includes faces extracted from 22 global broadcast channels including ABC News, Sky News, Al Jazeera, and others
+- **File Naming Convention**: Each image is named with the format `[channel]_frame_[timestamp]_face_[face_index].jpg`
+- **Unified Annotations**: A single `annotations.json` file contains metadata for all 2.6 million images across all channels
 
 ## Data Format
 
 ### Image Organization
-- **Identity Folders**: Each folder (0, 1, 2, ...) contains all images for a specific identity
 - **Image Format**: JPEG with RGB color space, 224×224 pixels
 - **Quality**: 95% JPEG quality with minimal compression artifacts
 - **Naming Convention**: Descriptive names preserving source information
@@ -226,6 +204,18 @@ cd TVFace-Dataset
 pip install -r requirements.txt
 ```
 
+### Merging Channel Data
+
+When you download the TVFace dataset from Google Drive, the images are organized by TV channels. To simplify processing, you'll want to merge all face images into a single directory. Use this script:
+
+Run this script to merge all face images:
+
+```bash
+python merge_faces.py
+```
+
+This will create a new directory `tvface_dataset/faces` containing all face images from all 22 channels, while preserving the original directory structure.
+
 ### Data Loading
 
 ```python
@@ -242,8 +232,8 @@ transform = transforms.Compose([
 ])
 
 dataset = TVFaceDataset(
-    img_dir='path/to/tvface_dataset',
-    annotation_path='path/to/annotations.json',
+    img_dir='path/to/tvface_dataset/faces',  # Point to the merged faces directory
+    annotation_path='path/to/tvface_dataset/annotations.json',
     transform=transform
 )
 
@@ -259,7 +249,7 @@ print(f"Expression: {sample['expression']}")
 ### Accessing Demographic Statistics
 
 ```python
-from compute_statistics import compute_statistics
+from statistics.calculate_statistics import compute_statistics
 from tvface_dataset import TVFaceDataset
 import torchvision.transforms as T
 
