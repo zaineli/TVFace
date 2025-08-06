@@ -61,7 +61,7 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 </tr>
 </table>
 
-## Demographic Distribution
+## Ethnicity Distribution
 
 | **Ethnicity** | Count | Percentage |
 |---------------|-------|------------|
