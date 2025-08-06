@@ -1,7 +1,11 @@
-# TVFace Dataset
-**Large-Scale Facial Clustering & Recognition Dataset**
 
-Journal Article · [Dataset (Google Drive)](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
+
+<div align="center">
+
+# TVFace Dataset
+### Large-Scale Facial Clustering & Recognition Dataset
+
+[Journal Article](https://doi.org/10.1007/s10044-025-01464-3) · [Dataset (Google Drive)](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
 
 [![License](https://img.shields.io/badge/License-CC_BY_NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![DOI](https://zenodo.org/badge/DOI/10.1007/s10044-025-01464-3.svg)](https://doi.org/10.1007/s10044-025-01464-3)
@@ -9,6 +13,9 @@ Journal Article · [Dataset (Google Drive)](https://drive.google.com/drive/folde
 <p align="center">
   <img src="assets/diverse_collage.jpg" alt="Identity Collage" width="800">
 </p>
+
+</div>
+
 
 ## Overview
 
