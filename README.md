@@ -5,7 +5,7 @@
 # TVFace Dataset
 ### Large-Scale Facial Clustering & Recognition Dataset
 
-[Journal Article](https://doi.org/10.1007/s10044-025-01464-3) · [Dataset (Google Drive)](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
+[Research Paper](https://doi.org/10.1007/s10044-025-01464-3) · [Dataset (Google Drive)](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
 
 [![License](https://img.shields.io/badge/License-CC_BY_NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![DOI](https://zenodo.org/badge/DOI/10.1007/s10044-025-01464-3.svg)](https://doi.org/10.1007/s10044-025-01464-3)
@@ -120,7 +120,9 @@ tvface_dataset/
 │   └── ...
 ├── aljazeera/
 │   └── ...
-├── [20 other channels]/
+├── euronews/
+│   └── ...
+├── [18 other channels]/
 │   └── ...
 annotations.json  # Contains annotations for all 2.6M images across all channels
 ```
@@ -391,21 +393,23 @@ The TVFace dataset is available for download through our official channels:
 - **Documentation**: [https://docs.cvrc.org/tvface](https://docs.cvrc.org/tvface)
 
 ### System Requirements
-- **Storage**: 150GB free disk space
-- **Memory**: 16GB RAM recommended for full dataset loading
-- **Processing**: GPU recommended for deep learning applications
+- **Storage**: 65GB Free Disk Space Required
+- **Memory**: 16GB RAM Recommended
 
 ## Citation
 
 If you use TVFace in your research, please cite:
 
 ```bibtex
-@dataset{tvface2026,
-  title={TVFace: Large-Scale Facial Clustering \& Recognition Dataset},
-  author={Machvis Research Team},
-  year={2026},
-  publisher={Computer Vision Research Center},
-  url={https://github.com/zaineli/TVFace},
+@article{khurshid2025tvface,
+  title={TVFace: towards large-scale unsupervised face recognition in video streams},
+  author={Khurshid, Atif and Khan, Bostan and Shahzad, Muhammad and Fraz, Muhammad Moazam},
+  journal={Pattern Analysis and Applications},
+  volume={28},
+  number={2},
+  pages={1--21},
+  year={2025},
+  publisher={Springer},
   doi={10.1007/s10044-025-01464-3}
 }
 ```
@@ -416,15 +420,8 @@ This dataset is released under the [Creative Commons Attribution-NonCommercial 4
 
 ## Contact
 
-For dataset access, technical support, and research inquiries:
+For technical support and research inquiries, you can reach out to as at the following addresses:
 
-- **General Inquiries**: tvface-dataset@cvrc.org
-- **Technical Support**: support@cvrc.org  
-- **Research Collaboration**: research@cvrc.org
-- **Website**: [https://cvrc.org/tvface](https://cvrc.org/tvface)
-
-## Acknowledgments
-
-We thank the computer vision community for their continued support and the broadcast media sources that made this dataset possible. Special recognition goes to the annotation teams and ethics review boards that ensured responsible dataset creation.
-
----
+- **For General Inquiries & Technical Support**: vision@seecs.edu.pk
+- **For Research Collaboration**: moazam.fraz@seecs.edu.pk
+- **Website**: [vision.seecs.edu.pk](vision.seecs.edu.pk)
