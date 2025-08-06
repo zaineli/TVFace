@@ -5,7 +5,7 @@
 # TVFace Dataset
 ### Large-Scale Facial Clustering & Recognition Dataset
 
-[Journal Article](https://doi.org/10.1007/s10044-025-01464-3) · [Dataset (Google Drive)](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
+[Research Paper](https://doi.org/10.1007/s10044-025-01464-3) · [Dataset (Google Drive)](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
 
 [![License](https://img.shields.io/badge/License-CC_BY_NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![DOI](https://zenodo.org/badge/DOI/10.1007/s10044-025-01464-3.svg)](https://doi.org/10.1007/s10044-025-01464-3)
@@ -61,7 +61,7 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 </tr>
 </table>
 
-## Demographic Distribution
+## Ethnicity Distribution
 
 | **Ethnicity** | Count | Percentage |
 |---------------|-------|------------|
@@ -76,7 +76,6 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 <img src="statistics/graphs/ethnicity_distribution.png" alt="Ethnicity Distribution" width="100%">
 
 ## Expression Distribution
-
 
 | **Expression** | **Count** | **Percentage** | **Avg. Confidence** |
 |----------------|-----------|----------------|---------------------|
@@ -93,8 +92,6 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 
 
 ## Head Pose Statistics
-
-
 
 | **Pose Component** | **Mean (degrees)** | **Std Dev (degrees)** | **Characteristics** |
 |--------------------|--------------------|-----------------------|---------------------|
@@ -120,21 +117,17 @@ tvface_dataset/
 │   └── ...
 ├── aljazeera/
 │   └── ...
-├── [20 other channels]/
+├── euronews/
+│   └── ...
+├── [18 other channels]/
 │   └── ...
 annotations.json  # Contains annotations for all 2.6M images across all channels
 ```
 
 - **22 Television Channels**: The dataset includes faces extracted from 22 global broadcast channels including ABC News, Sky News, Al Jazeera, and others
 - **File Naming Convention**: Each image is named with the format `[channel]_frame_[timestamp]_face_[face_index].jpg`
+- **Image Size**: Each image is 224 x 224 pixels
 - **Unified Annotations**: A single `annotations.json` file contains metadata for all 2.6 million images across all channels
-
-## Data Format
-
-### Image Organization
-- **Image Format**: JPEG with RGB color space, 224×224 pixels
-- **Quality**: 95% JPEG quality with minimal compression artifacts
-- **Naming Convention**: Descriptive names preserving source information
 
 ### Annotation Format (annotations.json)
 
@@ -305,64 +298,32 @@ print(f"Largest cluster: {max(cluster_sizes)} images")
 print(f"Smallest cluster: {min(cluster_sizes)} images")
 ```
 
-## Evaluation Metrics
-
-### Clustering Evaluation
-
-```python
-from evaluation_scripts.clustering_metrics import evaluate_clustering
-
-# Example usage
-true_labels = [0, 0, 1, 1, 2, 2]
-pred_labels = [0, 0, 1, 2, 2, 2]
-
-metrics = evaluate_clustering(true_labels, pred_labels)
-print(f"NMI: {metrics['NMI']:.4f}")
-print(f"ARI: {metrics['ARI']:.4f}")
-print(f"Purity: {metrics['Purity']:.4f}")
-print(f"Homogeneity: {metrics['Homogeneity']:.4f}")
-print(f"Completeness: {metrics['Completeness']:.4f}")
-```
-
-### Demographic Fairness Analysis
-
-```python
-from evaluation_scripts.demographic_analysis import analyze_fairness
-
-# Analyze performance across demographic groups
-fairness_report = analyze_fairness(
-    predictions=pred_labels,
-    ground_truth=true_labels,
-    demographics=demographic_data
-)
-
-print("Performance by Gender:")
-for gender, metrics in fairness_report['gender'].items():
-    print(f"  {gender}: NMI={metrics['NMI']:.3f}, ARI={metrics['ARI']:.3f}")
-```
-
 ## Dataset Challenges and Applications
 
 <table>
 <tr>
 <td width="50%">
 
-### Key Challenges
-- **Scale**: Efficiently processing 2.6M+ images
-- **Long-tail Distribution**: Handling clusters ranging from 10 to 21,983 images
-- **Temporal Variations**: Same individuals across multiple years
-- **Pose Diversity**: Full 360° coverage with professional TV angles
-- **Demographic Fairness**: Ensuring equitable performance across all groups
+<h3>Key Challenges</h3>
+<ul>
+<li><strong>Scale</strong>: Efficiently processing 2.6 million+ images</li>
+<li><strong>Long-tail Distribution</strong>: Handling clusters ranging from 10 to 21,983 images</li>
+<li><strong>Temporal Variations</strong>: Same individuals across multiple years</li>
+<li><strong>Pose Diversity</strong>: Full 360° coverage with professional TV angles</li>
+<li><strong>Demographic Fairness</strong>: Ensuring equitable performance across all groups</li>
+</ul>
 
 </td>
 <td width="50%">
 
-### Research Applications
-- **Unsupervised Face Clustering**: Organize large-scale unlabeled face datasets
-- **Face Recognition**: Train and evaluate recognition systems
-- **Demographic Bias Analysis**: Study fairness across different groups
-- **Temporal Face Analysis**: Research aging effects and temporal consistency
-- **Large-scale Retrieval**: Develop efficient face search systems
+<h3>Research Applications</h3>
+<ul>
+<li><strong>Unsupervised Face Clustering</strong>: Organize large-scale unlabeled face datasets</li>
+<li><strong>Face Recognition</strong>: Train and evaluate recognition systems</li>
+<li><strong>Demographic Bias Analysis</strong>: Study fairness across different groups</li>
+<li><strong>Temporal Face Analysis</strong>: Research aging effects and temporal consistency</li>
+<li><strong>Large-scale Retrieval</strong>: Develop efficient face search systems</li>
+</ul>
 
 </td>
 </tr>
@@ -391,21 +352,23 @@ The TVFace dataset is available for download through our official channels:
 - **Documentation**: [https://docs.cvrc.org/tvface](https://docs.cvrc.org/tvface)
 
 ### System Requirements
-- **Storage**: 150GB free disk space
-- **Memory**: 16GB RAM recommended for full dataset loading
-- **Processing**: GPU recommended for deep learning applications
+- **Storage**: 65GB Free Disk Space Required
+- **Memory**: 16GB RAM Recommended
 
 ## Citation
 
 If you use TVFace in your research, please cite:
 
 ```bibtex
-@dataset{tvface2026,
-  title={TVFace: Large-Scale Facial Clustering \& Recognition Dataset},
-  author={Machvis Research Team},
-  year={2026},
-  publisher={Computer Vision Research Center},
-  url={https://github.com/zaineli/TVFace},
+@article{khurshid2025tvface,
+  title={TVFace: towards large-scale unsupervised face recognition in video streams},
+  author={Khurshid, Atif and Khan, Bostan and Shahzad, Muhammad and Fraz, Muhammad Moazam},
+  journal={Pattern Analysis and Applications},
+  volume={28},
+  number={2},
+  pages={1--21},
+  year={2025},
+  publisher={Springer},
   doi={10.1007/s10044-025-01464-3}
 }
 ```
@@ -416,15 +379,8 @@ This dataset is released under the [Creative Commons Attribution-NonCommercial 4
 
 ## Contact
 
-For dataset access, technical support, and research inquiries:
+For technical support and research inquiries, you can reach out to us at the following addresses:
 
-- **General Inquiries**: tvface-dataset@cvrc.org
-- **Technical Support**: support@cvrc.org  
-- **Research Collaboration**: research@cvrc.org
-- **Website**: [https://cvrc.org/tvface](https://cvrc.org/tvface)
-
-## Acknowledgments
-
-We thank the computer vision community for their continued support and the broadcast media sources that made this dataset possible. Special recognition goes to the annotation teams and ethics review boards that ensured responsible dataset creation.
-
----
+- **For General Inquiries & Technical Support**: vision@seecs.edu.pk
+- **For Research Collaboration**: moazam.fraz@seecs.edu.pk
+- **Website**: [vision.seecs.edu.pk](https://vision.seecs.edu.pk/)
