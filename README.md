@@ -77,7 +77,6 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 
 ## Expression Distribution
 
-
 | **Expression** | **Count** | **Percentage** | **Avg. Confidence** |
 |----------------|-----------|----------------|---------------------|
 | Neutral | 1,048,995 | 39.39% | 0.790 |
@@ -93,8 +92,6 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 
 
 ## Head Pose Statistics
-
-
 
 | **Pose Component** | **Mean (degrees)** | **Std Dev (degrees)** | **Characteristics** |
 |--------------------|--------------------|-----------------------|---------------------|
@@ -129,14 +126,8 @@ annotations.json  # Contains annotations for all 2.6M images across all channels
 
 - **22 Television Channels**: The dataset includes faces extracted from 22 global broadcast channels including ABC News, Sky News, Al Jazeera, and others
 - **File Naming Convention**: Each image is named with the format `[channel]_frame_[timestamp]_face_[face_index].jpg`
+- **Image Size**: Each image is 224 x 224 pixels
 - **Unified Annotations**: A single `annotations.json` file contains metadata for all 2.6 million images across all channels
-
-## Data Format
-
-### Image Organization
-- **Image Format**: JPEG with RGB color space, 224×224 pixels
-- **Quality**: 95% JPEG quality with minimal compression artifacts
-- **Naming Convention**: Descriptive names preserving source information
 
 ### Annotation Format (annotations.json)
 
@@ -388,8 +379,8 @@ This dataset is released under the [Creative Commons Attribution-NonCommercial 4
 
 ## Contact
 
-For technical support and research inquiries, you can reach out to as at the following addresses:
+For technical support and research inquiries, you can reach out to us at the following addresses:
 
 - **For General Inquiries & Technical Support**: vision@seecs.edu.pk
 - **For Research Collaboration**: moazam.fraz@seecs.edu.pk
-- **Website**: [vision.seecs.edu.pk](vision.seecs.edu.pk)
+- **Website**: [vision.seecs.edu.pk](https://vision.seecs.edu.pk/)
