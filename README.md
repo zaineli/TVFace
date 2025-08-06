@@ -315,7 +315,7 @@ print(f"Smallest cluster: {min(cluster_sizes)} images")
 
 <h3>Key Challenges</h3>
 <ul>
-<li><strong>Scale</strong>: Efficiently processing 2.6M+ images</li>
+<li><strong>Scale</strong>: Efficiently processing 2.6 million+ images</li>
 <li><strong>Long-tail Distribution</strong>: Handling clusters ranging from 10 to 21,983 images</li>
 <li><strong>Temporal Variations</strong>: Same individuals across multiple years</li>
 <li><strong>Pose Diversity</strong>: Full 360° coverage with professional TV angles</li>
