@@ -1,11 +1,13 @@
 # TVFace Dataset
 **Large-Scale Facial Clustering & Recognition Dataset**
 
+Journal Article · [Dataset (Google Drive)](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
+
 [![License](https://img.shields.io/badge/License-CC_BY_NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 [![DOI](https://zenodo.org/badge/DOI/10.1007/s10044-025-01464-3.svg)](https://doi.org/10.1007/s10044-025-01464-3)
 
 <p align="center">
-  <img src="assets/collage_3450.jpg" alt="Identity Collage" width="800">
+  <img src="assets/diverse_collage.jpg" alt="Identity Collage" width="800">
 </p>
 
 ## Overview
@@ -33,12 +35,31 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | **Age Groups** | 8 (0-2 to 70+) |
 | **Expressions** | 7 categories with confidence scores |
 
-### Demographic Distribution
+<div align="center">
+  <img src="assets/identity_distribution_simple.png" alt="Identity Distribution" width="700">
+</div>
+
+## Demographic Distribution
+
+<table>
+<tr>
+<td width="45%">
 
 | **Gender** | Count | Percentage |
 |------------|-------|------------|
 | Male | 1,714,636 | 65.71% |
 | Female | 894,574 | 34.29% |
+
+</td>
+<td width="55%">
+<img src="assets/gender_distribution_simple.png" alt="Gender Distribution" width="100%">
+</td>
+</tr>
+</table>
+
+<table>
+<tr>
+<td width="50%">
 
 | **Ethnicity** | Count | Percentage |
 |---------------|-------|------------|
@@ -50,11 +71,18 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | Latino Hispanic | 90,758 | 3.48% |
 | Southeast Asian | 37,277 | 1.43% |
 
-<p align="center">
-  <img src="assets/diverse_collage.jpg" alt="Diverse Collage" width="800">
-</p>
+</td>
+<td width="50%">
+<img src="assets/ethnicity_distribution_simple.png" alt="Ethnicity Distribution" width="100%">
+</td>
+</tr>
+</table>
 
-### Expression Distribution
+## Expression Distribution
+
+<table>
+<tr>
+<td width="50%">
 
 | **Expression** | **Count** | **Percentage** | **Avg. Confidence** |
 |----------------|-----------|----------------|---------------------|
@@ -66,13 +94,31 @@ TVFace is the largest publicly available facial recognition dataset featuring **
 | Surprise | 47,920 | 1.8% | 0.716 |
 | Disgust | 6,072 | 0.23% | 0.640 |
 
-### Head Pose Statistics
+</td>
+<td width="50%">
+<img src="assets/expression_distribution_simple.png" alt="Expression Distribution" width="100%">
+</td>
+</tr>
+</table>
+
+## Head Pose Statistics
+
+<table>
+<tr>
+<td width="50%">
 
 | **Pose Component** | **Mean (degrees)** | **Std Dev (degrees)** | **Characteristics** |
 |--------------------|--------------------|-----------------------|---------------------|
 | Yaw (Left-Right) | 0.43 | 23.47 | Wide variation, all angles |
 | Pitch (Up-Down) | -4.27 | 9.25 | Slight downward (camera angle) |
 | Roll (Tilt) | -0.997 | 7.98 | Nearly level, small variations |
+
+</td>
+<td width="50%">
+<img src="assets/head_pose_distribution_simple.png" alt="Head Pose Distribution" width="100%">
+</td>
+</tr>
+</table>
 
 ## Directory Structure
 
@@ -183,8 +229,8 @@ pip install -r requirements.txt
 ### Data Loading
 
 ```python
-from data_loader import TVFaceDataset
-from torchvision import transforms
+from tvface_dataset import TVFaceDataset
+import torchvision.transforms as transforms
 import json
 
 # Load dataset with transforms
@@ -196,33 +242,46 @@ transform = transforms.Compose([
 ])
 
 dataset = TVFaceDataset(
-    root_dir='path/to/tvface_dataset',
+    img_dir='path/to/tvface_dataset',
     annotation_path='path/to/annotations.json',
     transform=transform
 )
 
 # Get sample with annotations
-image, annotation = dataset[0]
-print(f"Image shape: {image.shape}")
-print(f"Identity label: {annotation['label']}")
-print(f"Age distribution: {annotation['attributes']['age']}")
+sample = dataset[0]
+print(f"Image shape: {sample['image'].shape}")
+print(f"Identity label: {sample['label']}")
+print(f"Gender: {sample['gender']}")
+print(f"Race: {sample['race']}")
+print(f"Expression: {sample['expression']}")
 ```
 
 ### Accessing Demographic Statistics
 
 ```python
-# Load demographic summary
-import pandas as pd
+from compute_statistics import compute_statistics
+from tvface_dataset import TVFaceDataset
+import torchvision.transforms as T
 
-demo_stats = pd.read_csv('tvface_dataset/annotations/demographic_summary.csv')
-print("Gender Distribution:")
-print(demo_stats.groupby('gender').size())
+# Initialize dataset
+transform = T.Compose([T.ToTensor()])
+dataset = TVFaceDataset(
+    img_dir='path/to/tvface_dataset',
+    annotation_path='path/to/annotations.json',
+    transform=transform
+)
 
-print("\nAge Distribution:")
-print(demo_stats.groupby('age_group').size())
+# Compute statistics
+stats = compute_statistics(dataset)
 
-print("\nEthnic Distribution:")
-print(demo_stats.groupby('race').size())
+# Print results
+print("=== Age Distribution ===")
+for k, v in stats['age_distribution'].items():
+    print(f"{k}: {v} ({v/len(dataset)*100:.2f}%)")
+
+print("\n=== Gender Distribution ===")
+for k, v in stats['gender_distribution'].items():
+    print(f"{k}: {v} ({v/len(dataset)*100:.2f}%)")
 ```
 
 ### Working with Identity Clusters
@@ -287,6 +346,10 @@ for gender, metrics in fairness_report['gender'].items():
 
 ## Dataset Challenges and Applications
 
+<table>
+<tr>
+<td width="50%">
+
 ### Key Challenges
 - **Scale**: Efficiently processing 2.6M+ images
 - **Long-tail Distribution**: Handling clusters ranging from 10 to 21,983 images
@@ -294,13 +357,19 @@ for gender, metrics in fairness_report['gender'].items():
 - **Pose Diversity**: Full 360° coverage with professional TV angles
 - **Demographic Fairness**: Ensuring equitable performance across all groups
 
+</td>
+<td width="50%">
+
 ### Research Applications
 - **Unsupervised Face Clustering**: Organize large-scale unlabeled face datasets
 - **Face Recognition**: Train and evaluate recognition systems
 - **Demographic Bias Analysis**: Study fairness across different groups
 - **Temporal Face Analysis**: Research aging effects and temporal consistency
 - **Large-scale Retrieval**: Develop efficient face search systems
-- **Expression Recognition**: Analyze facial expressions in broadcast media
+
+</td>
+</tr>
+</table>
 
 ## Ethical Considerations
 
@@ -320,8 +389,8 @@ All facial images are derived from publicly broadcast television content with ap
 ### Dataset Access
 The TVFace dataset is available for download through our official channels:
 
+- **Google Drive**: [https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
 - **Homepage**: [https://cvrc.org/tvface](https://cvrc.org/tvface)
-- **Download Portal**: [https://cvrc.org/tvface/download](https://cvrc.org/tvface/download)
 - **Documentation**: [https://docs.cvrc.org/tvface](https://docs.cvrc.org/tvface)
 
 ### System Requirements
@@ -362,7 +431,3 @@ For dataset access, technical support, and research inquiries:
 We thank the computer vision community for their continued support and the broadcast media sources that made this dataset possible. Special recognition goes to the annotation teams and ethics review boards that ensured responsible dataset creation.
 
 ---
-
-<p align="center">
-  <img src="assets/diverse_collage.jpg" alt="Sample Images" width="800">
-</p>
