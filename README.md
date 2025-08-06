@@ -307,64 +307,32 @@ print(f"Largest cluster: {max(cluster_sizes)} images")
 print(f"Smallest cluster: {min(cluster_sizes)} images")
 ```
 
-## Evaluation Metrics
-
-### Clustering Evaluation
-
-```python
-from evaluation_scripts.clustering_metrics import evaluate_clustering
-
-# Example usage
-true_labels = [0, 0, 1, 1, 2, 2]
-pred_labels = [0, 0, 1, 2, 2, 2]
-
-metrics = evaluate_clustering(true_labels, pred_labels)
-print(f"NMI: {metrics['NMI']:.4f}")
-print(f"ARI: {metrics['ARI']:.4f}")
-print(f"Purity: {metrics['Purity']:.4f}")
-print(f"Homogeneity: {metrics['Homogeneity']:.4f}")
-print(f"Completeness: {metrics['Completeness']:.4f}")
-```
-
-### Demographic Fairness Analysis
-
-```python
-from evaluation_scripts.demographic_analysis import analyze_fairness
-
-# Analyze performance across demographic groups
-fairness_report = analyze_fairness(
-    predictions=pred_labels,
-    ground_truth=true_labels,
-    demographics=demographic_data
-)
-
-print("Performance by Gender:")
-for gender, metrics in fairness_report['gender'].items():
-    print(f"  {gender}: NMI={metrics['NMI']:.3f}, ARI={metrics['ARI']:.3f}")
-```
-
 ## Dataset Challenges and Applications
 
 <table>
 <tr>
 <td width="50%">
 
-### Key Challenges
-- **Scale**: Efficiently processing 2.6M+ images
-- **Long-tail Distribution**: Handling clusters ranging from 10 to 21,983 images
-- **Temporal Variations**: Same individuals across multiple years
-- **Pose Diversity**: Full 360° coverage with professional TV angles
-- **Demographic Fairness**: Ensuring equitable performance across all groups
+<h3>Key Challenges</h3>
+<ul>
+<li><strong>Scale</strong>: Efficiently processing 2.6M+ images</li>
+<li><strong>Long-tail Distribution</strong>: Handling clusters ranging from 10 to 21,983 images</li>
+<li><strong>Temporal Variations</strong>: Same individuals across multiple years</li>
+<li><strong>Pose Diversity</strong>: Full 360° coverage with professional TV angles</li>
+<li><strong>Demographic Fairness</strong>: Ensuring equitable performance across all groups</li>
+</ul>
 
 </td>
 <td width="50%">
 
-### Research Applications
-- **Unsupervised Face Clustering**: Organize large-scale unlabeled face datasets
-- **Face Recognition**: Train and evaluate recognition systems
-- **Demographic Bias Analysis**: Study fairness across different groups
-- **Temporal Face Analysis**: Research aging effects and temporal consistency
-- **Large-scale Retrieval**: Develop efficient face search systems
+<h3>Research Applications</h3>
+<ul>
+<li><strong>Unsupervised Face Clustering</strong>: Organize large-scale unlabeled face datasets</li>
+<li><strong>Face Recognition</strong>: Train and evaluate recognition systems</li>
+<li><strong>Demographic Bias Analysis</strong>: Study fairness across different groups</li>
+<li><strong>Temporal Face Analysis</strong>: Research aging effects and temporal consistency</li>
+<li><strong>Large-scale Retrieval</strong>: Develop efficient face search systems</li>
+</ul>
 
 </td>
 </tr>
