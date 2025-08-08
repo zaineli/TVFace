@@ -348,8 +348,6 @@ All facial images are derived from publicly broadcast television content with ap
 The TVFace dataset is available for download through our official channels:
 
 - **Google Drive**: [https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
-- **Homepage**: [https://cvrc.org/tvface](https://cvrc.org/tvface)
-- **Documentation**: [https://docs.cvrc.org/tvface](https://docs.cvrc.org/tvface)
 
 ### System Requirements
 - **Storage**: 65GB Free Disk Space Required
