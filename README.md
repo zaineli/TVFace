@@ -345,7 +345,7 @@ All facial images are derived from publicly broadcast television content with ap
 ## Download and Access
 
 ### Dataset Access
-The TVFace dataset is available for download through our official channels:
+The TVFace dataset is available for download through the following Google Drive folder:
 
 - **Google Drive**: [https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing](https://drive.google.com/drive/folders/1GBJs96fE6qbef8VGurz4q3DvN4s_pXDw?usp=sharing)
 
