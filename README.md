@@ -223,7 +223,7 @@ from tvface_dataset import TVFaceDataset
 import torchvision.transforms as transforms
 import json
 
-# Load dataset with transforms
+# loading dataset with transforms
 transform = transforms.Compose([
     transforms.Resize((256, 256)),
     transforms.ToTensor(),
@@ -237,7 +237,7 @@ dataset = TVFaceDataset(
     transform=transform
 )
 
-# Get sample with annotations
+# getting sample with annotations
 sample = dataset[0]
 print(f"Image shape: {sample['image'].shape}")
 print(f"Identity label: {sample['label']}")
@@ -253,7 +253,7 @@ from statistics.calculate_statistics import compute_statistics
 from tvface_dataset import TVFaceDataset
 import torchvision.transforms as T
 
-# Initialize dataset
+# initializing dataset
 transform = T.Compose([T.ToTensor()])
 dataset = TVFaceDataset(
     img_dir='path/to/tvface_dataset',
@@ -261,10 +261,10 @@ dataset = TVFaceDataset(
     transform=transform
 )
 
-# Compute statistics
+# computing statistics
 stats = compute_statistics(dataset)
 
-# Print results
+# printing results
 print("=== Age Distribution ===")
 for k, v in stats['age_distribution'].items():
     print(f"{k}: {v} ({v/len(dataset)*100:.2f}%)")
@@ -280,17 +280,17 @@ for k, v in stats['gender_distribution'].items():
 import json
 from collections import defaultdict
 
-# Load annotations
+# loading annotations
 with open('tvface_dataset/annotations/annotations.json', 'r') as f:
     annotations = json.load(f)
 
-# Group images by identity
+# grouping images by identity
 identity_clusters = defaultdict(list)
 for image_id, data in annotations['labels'].items():
     if data['mask'] == 0.0:  # Include only valid images
         identity_clusters[data['label']].append(image_id)
 
-# Analyze cluster sizes
+# analyzing cluster sizes
 cluster_sizes = [len(images) for images in identity_clusters.values()]
 print(f"Total identities: {len(identity_clusters)}")
 print(f"Average cluster size: {sum(cluster_sizes) / len(cluster_sizes):.1f}")
